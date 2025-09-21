@@ -1,5 +1,7 @@
 import Notification from "../notification/notification";
-export default abstract class Entity {
+import EntityInterface from "./entity.interface";
+
+export default abstract class Entity implements EntityInterface {
   protected _id: string;
   public notification: Notification;
 
