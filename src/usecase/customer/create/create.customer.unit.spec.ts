@@ -22,9 +22,9 @@ const MockRepository = () => {
 describe("Unit test create customer use case", () => {
   it("should create a customer", async () => {
     const customerRepository = MockRepository();
-    const customerCreateUseCase = new CreateCustomerUseCase(customerRepository);
+    const usecase = new CreateCustomerUseCase(customerRepository);
 
-    const output = await customerCreateUseCase.execute(input);
+    const output = await usecase.execute(input);
 
     expect(output).toEqual({
       id: expect.any(String),
