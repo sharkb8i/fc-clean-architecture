@@ -1,6 +1,7 @@
 import CustomerFactory from "../../../domain/customer/factory/customer.factory";
 import Address from "../../../domain/customer/value-object/address";
 import ListCustomerUseCase from "./list.customer.usecase";
+
 const customer1 = CustomerFactory.createWithAddress(
   "John Doe",
   new Address("Street 1", 1, "12345", "City")
@@ -20,12 +21,12 @@ const MockRepository = () => {
   };
 };
 
-describe("Unit test for listing customer use case", () => {
-  it("should list a customer", async () => {
+describe("Unit Test for listing customer use case", () => {
+  it("should list customers", async () => {
     const repository = MockRepository();
-    const useCase = new ListCustomerUseCase(repository);
+    const usecase = new ListCustomerUseCase(repository);
 
-    const output = await useCase.execute({});
+    const output = await usecase.execute({});
 
     expect(output.customers.length).toBe(2);
     expect(output.customers[0].id).toBe(customer1.id);
