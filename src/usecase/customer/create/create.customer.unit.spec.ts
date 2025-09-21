@@ -1,15 +1,5 @@
 import CreateCustomerUseCase from "./create.customer.usecase";
 
-const input = {
-  name: "John",
-  address: {
-    street: "Street",
-    number: 123,
-    zip: "Zip",
-    city: "City",
-  },
-};
-
 const MockRepository = () => {
   return {
     find: jest.fn(),
@@ -24,6 +14,15 @@ describe("Unit test create customer use case", () => {
     const customerRepository = MockRepository();
     const usecase = new CreateCustomerUseCase(customerRepository);
 
+    const input = {
+      name: "John",
+      address: {
+        street: "Street",
+        number: 123,
+        zip: "Zip",
+        city: "City",
+      },
+    };
     const output = await usecase.execute(input);
 
     expect(output).toEqual({
@@ -42,7 +41,15 @@ describe("Unit test create customer use case", () => {
     const customerRepository = MockRepository();
     const usecase = new CreateCustomerUseCase(customerRepository);
 
-    input.name = "";
+    const input = {
+      name: "",
+      address: {
+        street: "Street",
+        number: 123,
+        zip: "Zip",
+        city: "City",
+      },
+    };
 
     await expect(usecase.execute(input)).rejects.toThrow(
       "Name is required"
@@ -53,7 +60,15 @@ describe("Unit test create customer use case", () => {
     const customerRepository = MockRepository();
     const usecase = new CreateCustomerUseCase(customerRepository);
 
-    input.address.street = "";
+    const input = {
+      name: "John",
+      address: {
+        street: "",
+        number: 123,
+        zip: "Zip",
+        city: "City",
+      },
+    };
 
     await expect(usecase.execute(input)).rejects.toThrow(
       "Street is required"
